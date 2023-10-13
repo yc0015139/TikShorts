@@ -6,38 +6,36 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import yc.dev.tikshorts.ui.route.Route
+import yc.dev.tikshorts.ui.screen.homescreen.HomeScreen
+import yc.dev.tikshorts.ui.screen.xmlscreen.VideoViewerFragmentScreen
 import yc.dev.tikshorts.ui.theme.TikShortsTheme
 
 class MainActivity : ComponentActivity() {
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContent {
-      TikShortsTheme {
-        // A surface container using the 'background' color from the theme
-        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          Greeting("Android")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            TikShortsTheme {
+                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                    SetupNavigation()
+                }
+            }
         }
-      }
     }
-  }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-  Text(
-    text = "Hello $name!",
-    modifier = modifier
-  )
-}
+private fun SetupNavigation() {
+    val navController = rememberNavController()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-  TikShortsTheme {
-    Greeting("Android")
-  }
+    NavHost(navController = navController, startDestination = Route.Home.route) {
+        composable(Route.Home.route) { HomeScreen(navController = navController) }
+        composable(Route.Xml.route) { VideoViewerFragmentScreen() }
+        composable(Route.Compose.route) { /* TODO: Implement the screen with compose. */ }
+    }
 }
