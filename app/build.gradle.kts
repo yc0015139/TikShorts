@@ -56,7 +56,8 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material3:material3:1.1.2")
+    implementation ("com.google.android.material:material:1.10.0")
 
     val navVersion = "2.7.4"
     implementation("androidx.navigation:navigation-compose:$navVersion")
