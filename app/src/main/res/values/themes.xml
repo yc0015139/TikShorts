@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-  <style name="Theme.TikShorts" parent="android:Theme.Material.Light.NoActionBar">
+  <style name="Theme.TikShorts" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="colorPrimary">@color/purple_500</item>
     <item name="colorPrimaryVariant">@color/purple_700</item>
     <item name="colorOnPrimary">@color/white</item>
