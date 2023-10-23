@@ -13,11 +13,13 @@ import androidx.fragment.app.FragmentActivity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import yc.dev.tikshorts.ui.route.Route
 import yc.dev.tikshorts.ui.screen.homescreen.HomeScreen
 import yc.dev.tikshorts.ui.screen.xmlscreen.VideoContainerFragmentScreen
 import yc.dev.tikshorts.ui.theme.TikShortsTheme
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
