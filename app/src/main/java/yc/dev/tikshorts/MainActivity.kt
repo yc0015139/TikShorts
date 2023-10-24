@@ -18,11 +18,20 @@ import yc.dev.tikshorts.ui.route.Route
 import yc.dev.tikshorts.ui.screen.homescreen.HomeScreen
 import yc.dev.tikshorts.ui.screen.xmlscreen.VideoContainerFragmentScreen
 import yc.dev.tikshorts.ui.theme.TikShortsTheme
+import yc.dev.tikshorts.utils.player.PlayerManager
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var playerManager: PlayerManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        playerManager.observeInLifecycle(lifecycle)
+
         setContent {
             TikShortsTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
