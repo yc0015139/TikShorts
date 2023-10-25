@@ -8,13 +8,28 @@ import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import yc.dev.tikshorts.R
 import yc.dev.tikshorts.databinding.FragmentVideoViewerBinding
+import yc.dev.tikshorts.utils.player.PlayerManager
 import yc.dev.tikshorts.viewmodel.ARG_VIDEO_LINK
 import yc.dev.tikshorts.viewmodel.VideoViewerViewModel
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class VideoViewerFragment : Fragment(R.layout.fragment_video_viewer) {
     private val binding by viewBinding(FragmentVideoViewerBinding::bind)
-    private val viewModel: VideoViewerViewModel by viewModels()
+
+    @Inject
+    lateinit var playerManager: PlayerManager
+
+    @Inject
+    lateinit var viewModelFactory: VideoViewerViewModel.Factory
+    private val viewModel: VideoViewerViewModel by viewModels(
+        factoryProducer = {
+            VideoViewerViewModel.provideVideoViewerViewModelFactory(
+                viewModelFactory,
+                playerManager,
+            )
+        }
+    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
