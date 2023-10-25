@@ -31,7 +31,8 @@ object PlayerModule {
         return PlayerManager(
             ExoPlayer.Builder(context).build(),
             lifecycle,
-            Dispatchers.Main,
+            mainDispatcher = Dispatchers.Main,
+            defaultDispatcher = Dispatchers.Default,
         )
     }
 }

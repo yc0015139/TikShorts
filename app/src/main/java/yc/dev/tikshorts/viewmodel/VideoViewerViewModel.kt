@@ -9,7 +9,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import yc.dev.tikshorts.utils.player.PlayerManager
 
@@ -17,9 +17,18 @@ const val ARG_VIDEO_LINK = "VIDEO_LINK"
 
 class VideoViewerViewModel @AssistedInject constructor(
     @Assisted private val playerManager: PlayerManager,
+    private val dispatcher: CoroutineDispatcher,
 ) : ViewModel() {
+    private val _player = MutableLiveData<ExoPlayer>()
+    val player: LiveData<ExoPlayer> = _player
 
-    fun getUrl() = savedStateHandle.get<String>(ARG_VIDEO_LINK)
+    fun preparePlayerByLink(videoLink: String) {
+        viewModelScope.launch(dispatcher) {
+            playerManager.requirePlayerByLink(videoLink).collect {
+                _player.postValue(it)
+            }
+        }
+    }
 
     @AssistedFactory
     interface Factory {

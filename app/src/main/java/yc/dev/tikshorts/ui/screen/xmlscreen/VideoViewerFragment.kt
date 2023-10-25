@@ -34,7 +34,19 @@ class VideoViewerFragment : Fragment(R.layout.fragment_video_viewer) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvText.text = viewModel.getUrl()
+        prepareVideo()
+        observePlayer()
+    }
+
+    private fun prepareVideo() {
+        val link = arguments?.getString(ARG_VIDEO_LINK)
+        link?.also { viewModel.preparePlayerByLink(it) }
+    }
+
+    private fun observePlayer() {
+        viewModel.player.observe(viewLifecycleOwner) {
+            binding.pvVideo.player = it
+        }
     }
 
     companion object {
