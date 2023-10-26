@@ -14,29 +14,32 @@ import kotlinx.coroutines.withContext
 
 class PlayerManager constructor(
     private val player: ExoPlayer,
-    lifecycle: Lifecycle,
+    lifecycle: Lifecycle? = null,
     private val mainDispatcher: CoroutineDispatcher,
     private val defaultDispatcher: CoroutineDispatcher,
 ) {
     init {
-        val observer: DefaultLifecycleObserver = object : DefaultLifecycleObserver {
+        lifecycle?.run {
+            val observer: DefaultLifecycleObserver = object : DefaultLifecycleObserver {
 
-            override fun onResume(owner: LifecycleOwner) {
-                player.seekTo(0)
-                player.prepare()
-            }
+                override fun onResume(owner: LifecycleOwner) {
+                    player.seekTo(0)
+                    player.prepare()
+                }
 
-            override fun onPause(owner: LifecycleOwner) {
-                player.stop()
-            }
+                override fun onPause(owner: LifecycleOwner) {
+                    player.stop()
+                }
 
-            override fun onDestroy(owner: LifecycleOwner) {
-                player.release()
-                owner.lifecycle.removeObserver(this)
+                override fun onDestroy(owner: LifecycleOwner) {
+                    player.stop()
+                    player.release()
+                    owner.lifecycle.removeObserver(this)
+                }
             }
+            addObserver(observer)
         }
-
-        lifecycle.addObserver(observer)
+        // TODO: Implement compose state observer?
     }
 
     suspend fun requirePlayerByLink(link: String) = flow {
