@@ -58,7 +58,7 @@ fun HomeScreen(navController: NavController) {
     uiMode = Configuration.UI_MODE_NIGHT_YES
 )
 @Composable
-fun GreetingPreview() {
+fun HomeScreenPreview() {
     TikShortsTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
             HomeScreen(navController = rememberNavController())

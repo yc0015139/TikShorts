@@ -18,6 +18,7 @@ import yc.dev.tikshorts.ui.route.Route
 import yc.dev.tikshorts.ui.screen.homescreen.HomeScreen
 import yc.dev.tikshorts.ui.screen.xmlscreen.VideoContainerFragmentScreen
 import yc.dev.tikshorts.ui.theme.TikShortsTheme
+import yc.dev.tikshorts.utils.compose.safeComposable
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -42,7 +43,7 @@ private fun SetupNavigation() {
 
     NavHost(navController = navController, startDestination = Route.Home.route) {
         composable(Route.Home.route) { HomeScreen(navController = navController) }
-        composable(Route.Xml.route) { VideoContainerFragmentScreen(fm) }
-        composable(Route.Compose.route) { /* TODO: Implement the screen with compose. */ }
+        safeComposable(Route.Xml.route) { VideoContainerFragmentScreen(fm) }
+        safeComposable(Route.Compose.route) { /* TODO: Implement the screen with compose. */ }
     }
 }
