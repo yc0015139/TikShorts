@@ -39,7 +39,7 @@ class PlayerManager constructor(
             }
             addObserver(observer)
         }
-        // TODO: Implement compose state observer?
+        // TODO: PlayerManager should control the player event in Compose way
     }
 
     suspend fun requirePlayerByLink(link: String) = flow {
@@ -53,5 +53,9 @@ class PlayerManager constructor(
             emit(this@apply)
         }
     }.flowOn(defaultDispatcher)
+
+    fun release() {
+        player.release()
+    }
 
 }

@@ -8,6 +8,7 @@ import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import yc.dev.tikshorts.R
 import yc.dev.tikshorts.databinding.FragmentVideoViewerBinding
+import yc.dev.tikshorts.di.PlayerModuleAtXml
 import yc.dev.tikshorts.utils.player.PlayerManager
 import yc.dev.tikshorts.viewmodel.ARG_VIDEO_LINK
 import yc.dev.tikshorts.viewmodel.VideoViewerViewModel
@@ -18,6 +19,7 @@ class VideoViewerFragment : Fragment(R.layout.fragment_video_viewer) {
     private val binding by viewBinding(FragmentVideoViewerBinding::bind)
 
     @Inject
+    @PlayerModuleAtXml
     lateinit var playerManager: PlayerManager
 
     @Inject
