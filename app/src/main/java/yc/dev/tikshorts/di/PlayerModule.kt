@@ -11,6 +11,7 @@ import dagger.hilt.android.components.FragmentComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import yc.dev.tikshorts.utils.player.PlayerManager
+import javax.inject.Qualifier
 
 @Module
 @InstallIn(FragmentComponent::class)
@@ -24,6 +25,7 @@ object PlayerModule {
     }
 
     @Provides
+    @PlayerModuleAtXml
     fun providePlayerManager(
         @ApplicationContext context: Context,
         lifecycle: Lifecycle,
@@ -36,3 +38,7 @@ object PlayerModule {
         )
     }
 }
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class PlayerModuleAtXml

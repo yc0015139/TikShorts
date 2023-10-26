@@ -15,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import yc.dev.tikshorts.ui.route.Route
+import yc.dev.tikshorts.ui.screen.composescreen.VideoContainerComposeScreen
 import yc.dev.tikshorts.ui.screen.homescreen.HomeScreen
 import yc.dev.tikshorts.ui.screen.xmlscreen.VideoContainerFragmentScreen
 import yc.dev.tikshorts.ui.theme.TikShortsTheme
@@ -44,6 +45,6 @@ private fun SetupNavigation() {
     NavHost(navController = navController, startDestination = Route.Home.route) {
         composable(Route.Home.route) { HomeScreen(navController = navController) }
         safeComposable(Route.Xml.route) { VideoContainerFragmentScreen(fm) }
-        safeComposable(Route.Compose.route) { /* TODO: Implement the screen with compose. */ }
+        safeComposable(Route.Compose.route) { VideoContainerComposeScreen() }
     }
 }
