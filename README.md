@@ -3,7 +3,7 @@ The demo Android app resembles YouTube Shorts and TikTok.
 仿造 YouTube Shorts and TikTok 的範例程式
 
 ## Previews
-<img src="https://github.com/yc0015139/TikShorts/blob/develop/preview/preview1.gif" width="320"/>
+<img src="https://github.com/yc0015139/TikShorts/blob/develop/preview/preview1.gif" width="320"/> <img src="https://github.com/yc0015139/TikShorts/blob/develop/preview/preview2.gif" width="320"/>
 
 ## Issues
 - TS-1: 建立 APP 的基礎架構
@@ -37,6 +37,7 @@ jvmTarget = 17
 - Jetpack Compose
     - Compose navigation
         - Can navigate to Compose or XML View
+    - Pager
 - MVVM architecture
     - ViewModel
 - Dependency Injection
