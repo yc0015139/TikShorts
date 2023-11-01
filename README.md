@@ -10,6 +10,7 @@ The demo Android app resembles YouTube Shorts and TikTok.
 - TS-2: 以傳統 XML 實作滑動影音播放的功能
 - TS-3: 修正 Compose-navigation 在 navigation 時會重複呼叫，導致畫面重複前往的問題 ([Reference](https://github.com/google/accompanist/issues/1320))
 - TS-4: 以 Compose 實作滑動影音播放的功能
+- TS-5: 改善 PlayerManger 搭配 Compose 的效能問題
 
 ## Environment
 ```
@@ -21,7 +22,7 @@ targetSdk = 34
 jvmTarget = 17
 ```
 
-## Tech Stack
+## TechStack
 - Kotlin
     - Coroutines
         - Flow
